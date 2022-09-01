@@ -23,6 +23,15 @@ public class Deck {
         }
         shuffle();
     }
+    public Card getCard() {
+        return deck.get(position);
+    }
+    public boolean playing() {
+        if (position == 51) {
+            return false;
+        }
+        return true;
+    }
     public void shuffle() {
         for (int a = 0; a < 52; a++) {
             int first = rand.nextInt(52);
@@ -36,6 +45,12 @@ public class Deck {
     }
     public void displayCard() {
         System.out.println(deck.get(position));
+    }
+    public Card getNextCard() {
+        if (position != 51) {
+            return deck.get(position+1);
+        }
+        return null;
     }
     public void incrPosition() {
         position += 1;
