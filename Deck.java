@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Random;
 public class Deck {
     private ArrayList<Card> deck;
     private int position;
+    public Random rand;
     public Deck() {
         deck = new ArrayList<Card>();
         position = 0;
+        rand = new Random();
         for (int a = 0; a < 4; a++) {
             for (int b = 0; b < 13; b++) {
                 if (a == 0) {
@@ -16,6 +19,18 @@ public class Deck {
                 } else {
                     deck.add(new Card(Suit.SPADES, b+1));
                 }
+            }
+        }
+        shuffle();
+    }
+    public void shuffle() {
+        for (int a = 0; a < 52; a++) {
+            int first = rand.nextInt(52);
+            int second = rand.nextInt(52);
+            if (first != second) {
+                Card holder = deck.get(first);
+                deck.set(first, deck.get(second));
+                deck.set(second, holder);
             }
         }
     }
